@@ -1,6 +1,7 @@
 package br.com.rafael.agendamentobancario.models;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -26,14 +27,11 @@ public class Agendamento {
     @Column(name = "contaDeDestino", length = 6, nullable = false)
 	private String contaDeDestino;
     
-    @Temporal(TemporalType.DATE)
     @Column(name = "dataAgendada", nullable = false)
-    private Date dataAgendada;
+    private LocalDate dataAgendada;
     
-    
-    @Temporal(TemporalType.DATE)
     @Column(name = "dataRealizadaAgendamento", nullable = false)
-	private Date dataRealizadaAgendamento;
+	private LocalDate dataRealizadaAgendamento;
 
     @Column(name = "valorDaTransferencia", nullable = false)
 	private BigDecimal valorDaTransferencia;
@@ -65,19 +63,19 @@ public class Agendamento {
 		this.contaDeDestino = contaDeDestino;
 	}
 
-	public Date getDataAgendada() {
+	public LocalDate getDataAgendada() {
 		return dataAgendada;
 	}
 
-	public void setDataAgendada(Date dataAgendada) {
+	public void setDataAgendada(LocalDate dataAgendada) {
 		this.dataAgendada = dataAgendada;
 	}
 
-	public Date getDataRealizadaAgendamento() {
+	public LocalDate getDataRealizadaAgendamento() {
 		return dataRealizadaAgendamento;
 	}
 
-	public void setDataRealizadaAgendamento(Date dataRealizadaAgendamento) {
+	public void setDataRealizadaAgendamento(LocalDate dataRealizadaAgendamento) {
 		this.dataRealizadaAgendamento = dataRealizadaAgendamento;
 	}
 
