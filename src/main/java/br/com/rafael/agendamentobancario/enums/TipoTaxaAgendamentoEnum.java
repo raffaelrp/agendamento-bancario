@@ -1,4 +1,4 @@
-package br.com.rafael.agendamento.enums;
+package br.com.rafael.agendamentobancario.enums;
 
 public enum TipoTaxaAgendamentoEnum {
 
