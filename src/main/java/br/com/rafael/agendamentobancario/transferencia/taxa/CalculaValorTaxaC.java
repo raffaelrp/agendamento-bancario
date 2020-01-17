@@ -20,7 +20,7 @@ public class CalculaValorTaxaC implements CalculaValorTaxa {
 		
 		BigDecimal valorDaTransferencia = agendamento.getValorDaTransferencia();
 		
-		long quantidadeDeDias = DateUtil.CalculaDiasEntreDatas(agendamento.getDataAgendada(), agendamento.getDataRealizadaAgendamento());
+		long quantidadeDeDias = DateUtil.CalculaDiasEntreDatas(agendamento.getDataRealizadaAgendamento(), agendamento.getDataAgendada());
 		
 		if(quantidadeDeDias > 10 &&  quantidadeDeDias <= 20) {
 			valorTaxa = valorDaTransferencia.multiply(PERCENTUAL_TAXA_ENTRE_11_E_20_DIAS);

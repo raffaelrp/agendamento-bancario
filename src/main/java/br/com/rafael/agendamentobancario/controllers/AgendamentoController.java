@@ -3,6 +3,7 @@ package br.com.rafael.agendamentobancario.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,43 +16,29 @@ public class AgendamentoController {
 	
 	private String message;
 
-	private Agendamento agendamento = newAgendamento();
-	
-	@ModelAttribute(value = "agendamento")
-	public Agendamento newAgendamento()
-	{
-	    return new Agendamento();
-	}
-	
-	
+			
 	@Autowired
 	private AgendamentoService agendamentoService;
 	
     @GetMapping("/")
-    public String main() {
+    public String main(Model model) {
+    	 model.addAttribute("agendamento", new Agendamento());
 
         return "agendamento.html";
     }
     
     @GetMapping("/agendamento.html")
-    public String index() {
-        return "agendamento.html";
+    public void index(Model model) {
+    	main(model);
     }
     
     @PostMapping("/cadastrarAgendamento")
-    public String cadastrarAgendamento() {
+    public String cadastrarAgendamento(@ModelAttribute Agendamento agendamento) {
     	
-    	agendamentoService.save(agendamento);
+    	Agendamento agendamentoSalvo = agendamentoService.save(agendamento);
 
         return "agendamento.html"; 
     }
 
-	public Agendamento getAgendamento() {
-		return agendamento;
-	}
-
-	public void setAgendamento(Agendamento agendamento) {
-		this.agendamento = agendamento;
-	}
 
 }

@@ -12,6 +12,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "agendamento")
 public class Agendamento {
@@ -27,6 +29,7 @@ public class Agendamento {
     @Column(name = "contaDeDestino", length = 6, nullable = false)
 	private String contaDeDestino;
     
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "dataAgendada", nullable = false)
     private LocalDate dataAgendada;
     

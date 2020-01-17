@@ -11,8 +11,8 @@ public class CalculaValorTaxaB implements CalculaValorTaxa {
 	
 	public BigDecimal calculaValorTaxa(Agendamento agendamento) {
 		
-		long quantidadeDeDias = DateUtil.CalculaDiasEntreDatas(agendamento.getDataAgendada(), agendamento.getDataRealizadaAgendamento());
-		
+		long quantidadeDeDias = DateUtil.CalculaDiasEntreDatas(agendamento.getDataRealizadaAgendamento(), agendamento.getDataAgendada());
+			
 		BigDecimal valorTaxa =  new BigDecimal(quantidadeDeDias).multiply(VALOR_MULTIPLICADOR);
 		return valorTaxa;
 		

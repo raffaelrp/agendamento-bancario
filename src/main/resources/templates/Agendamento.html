@@ -19,16 +19,16 @@
                     <form action="#" th:action="@{/cadastrarAgendamento}" th:object="${agendamento}" method="post">
                         <div class="row">
                             <div class="form-group col-md-8">
-                            <label for="name" class="col-form-label">Conta de Origem</label>      <input type="text" th:field="*{contaDeOrigem}" class="form-control" id="contaOrigemID" placeholder="XXXXXX"> <span th:if="${#fields.hasErrors('contaDeOrigem')}" th:errors="*{contaDeOrigem}" class="text-danger"></span>
+                            <label for="contaOrigem" class="col-form-label">Conta de Origem</label>      <input th:required="true" type="number"  th:max="999999" onkeypress="if (this.value.length > 5) return false;" th:field="*{contaDeOrigem}" class="form-control" id="contaOrigemID" placeholder="XXXXXX"> <span th:if="${#fields.hasErrors('contaDeOrigem')}" th:errors="*{contaDeOrigem}" class="text-danger"></span>
                             </div>
                             <div class="form-group col-md-8">
-                                <label for="email" class="col-form-label">Conta de Destino</label>       <input type="text" th:field="*{contaDeDestino}" class="form-control" id="contaDestinoID" placeholder="XXXXXX"> <span th:if="${#fields.hasErrors('contaDeDestino')}" th:errors="*{contaDeDestino}" class="text-danger"></span>
+                                <label for="contaDestino" class="col-form-label">Conta de Destino</label>       <input  th:required="true" type="number"  th:max="999999" onkeypress="if (this.value.length > 5) return false;" th:field="*{contaDeDestino}" class="form-control" id="contaDestinoID" placeholder="XXXXXX"> <span th:if="${#fields.hasErrors('contaDeDestino')}" th:errors="*{contaDeDestino}" class="text-danger"></span>
                             </div>
                             <div class="form-group col-md-8">
-                                <label for="phoneNo" class="col-form-label">Data para agendamento</label>      <input type="text" th:field="*{dataAgendada}" class="form-control" id="dataAgendadaID" placeholder="DD/MM/YYYY"> <span th:if="${#fields.hasErrors('dataAgendada')}" th:errors="*{dataAgendada}" class="text-danger"></span> 
+                                <label for="dataAgendamento" class="col-form-label">Data para agendamento</label>      <input th:required="true" type="date" th:field="*{dataAgendada}" class="form-control" id="dataAgendadaID" placeholder="DD/MM/YYYY"> <span th:if="${#fields.hasErrors('dataAgendada')}"  th:errors="*{dataAgendada}" class="text-danger"></span> 
                             </div>
                              <div class="form-group col-md-8">
-                                <label for="phoneNo" class="col-form-label">Valor da Transferencia</label>     <input type="text" th:field="*{valorDaTransferencia}" class="form-control" id="valorTransferenciaID" placeholder="0.000,00"> <span th:if="${#fields.hasErrors('valorDaTransferencia')}" th:errors="*{valorDaTransferencia}" class="text-danger"></span> 
+                                <label for="valorTransferencia" class="col-form-label">Valor da Transferencia</label>     <input th:required="true" th:min="1"  type="number" th:field="*{valorDaTransferencia}" class="form-control" id="valorTransferenciaID" placeholder="0000,00"> <span th:if="${#fields.hasErrors('valorDaTransferencia')}" th:errors="*{valorDaTransferencia}" class="text-danger"></span> 
                             </div>
 
                             <div class="col-md-6">

@@ -27,7 +27,7 @@ public class TipoCalculo {
 	
 	private static String verificaQualTipoDeCalculo(Agendamento agendamento) {
 		
-		long quantidadeDeDias = DateUtil.CalculaDiasEntreDatas(agendamento.getDataAgendada(), agendamento.getDataRealizadaAgendamento());
+		long quantidadeDeDias = DateUtil.CalculaDiasEntreDatas(agendamento.getDataRealizadaAgendamento(), agendamento.getDataAgendada() );
 		
 		if (quantidadeDeDias == 0) {
 			return "TIPO_A";
@@ -35,7 +35,7 @@ public class TipoCalculo {
 		else if(quantidadeDeDias > 0 && quantidadeDeDias <= 10 ) {
 			return "TIPO_B";
 		}
-		else if(quantidadeDeDias > 10 &&  agendamento.getValorDaTransferencia().compareTo(VALOR_100MIL) > 1) {
+		else if(quantidadeDeDias > 10 && quantidadeDeDias <= 40 || quantidadeDeDias > 40 && agendamento.getValorDaTransferencia().compareTo(VALOR_100MIL) > 1) {
 			return "TIPO_C";
 		}
 		return null;
