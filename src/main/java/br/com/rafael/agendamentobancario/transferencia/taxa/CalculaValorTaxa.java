@@ -1,11 +1,11 @@
 package br.com.rafael.agendamentobancario.transferencia.taxa;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
-import br.com.rafael.agendamentobancario.models.Agendamento;
 
 public interface CalculaValorTaxa {
 	
-	BigDecimal calculaValorTaxa(Agendamento agendamento);
+	BigDecimal calculaValorTaxa(LocalDate dataRealizadaAgendamento, LocalDate dataDoAgendamento, BigDecimal valorDaTransferencia);
 
 }

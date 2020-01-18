@@ -1,44 +1,42 @@
 package br.com.rafael.agendamentobancario.transferencia.taxa;
 
 import java.math.BigDecimal;
-
-import br.com.rafael.agendamentobancario.models.Agendamento;
+import java.time.LocalDate;
 import br.com.rafael.agendamentobancario.utils.DateUtil;
-
 
 
 public class TipoCalculo {
 	
-	public static CalculaValorTaxa getTipoCalculo(Agendamento agendamento) {
-		switch (verificaQualTipoDeCalculo(agendamento)) {
-		case "TIPO_A":
-			return new CalculaValorTaxaA();
-		case "TIPO_B":
-			return new CalculaValorTaxaB();
-		case "TIPO_C":
-			return new CalculaValorTaxaC();
-		default:
-			return null;
-		}
-		
+	private final static BigDecimal VALOR_100MIL = new BigDecimal("100000");
+	
+	public static CalculaValorTaxa getTipoCalculo(LocalDate dataRealizadaAgendamento, LocalDate dataDoAgendamento, BigDecimal valorDaTransferencia) throws Exception 
+	{
+		return verificaQualTipoDeCalculo(dataRealizadaAgendamento, dataDoAgendamento, valorDaTransferencia);
 	}
 	
-	private final static BigDecimal VALOR_100MIL = new BigDecimal("100.000");
-	
-	private static String verificaQualTipoDeCalculo(Agendamento agendamento) {
-		
-		long quantidadeDeDias = DateUtil.CalculaDiasEntreDatas(agendamento.getDataRealizadaAgendamento(), agendamento.getDataAgendada() );
-		
-		if (quantidadeDeDias == 0) {
-			return "TIPO_A";
+	private static CalculaValorTaxa verificaQualTipoDeCalculo(LocalDate dataRealizadaAgendamento, LocalDate dataDoAgendamento, BigDecimal valorDaTransferencia) throws Exception {
+
+		long quantidadeDeDias = DateUtil.CalculaDiasEntreDatas(dataRealizadaAgendamento, dataDoAgendamento);
+
+		if (quantidadeDeDias == 0) 
+		{
+			return new CalculaValorTaxaA();
 		}
-		else if(quantidadeDeDias > 0 && quantidadeDeDias <= 10 ) {
-			return "TIPO_B";
+		else if(quantidadeDeDias > 0 && quantidadeDeDias <= 10 ) 
+		{
+			return new CalculaValorTaxaB();
 		}
-		else if(quantidadeDeDias > 10 && quantidadeDeDias <= 40 || quantidadeDeDias > 40 && agendamento.getValorDaTransferencia().compareTo(VALOR_100MIL) > 1) {
-			return "TIPO_C";
+		else if(quantidadeDeDias > 10 && quantidadeDeDias <= 40) 
+		{
+			return new CalculaValorTaxaC();
+		} 
+		else if (quantidadeDeDias > 40 && valorDaTransferencia.compareTo(VALOR_100MIL) > 0) 
+		{
+			return new CalculaValorTaxaC();
 		}
-		return null;
+		else {
+			throw new Exception("Não ha taxa aplicavel para esta transação");
+		}
 	}
 
 }

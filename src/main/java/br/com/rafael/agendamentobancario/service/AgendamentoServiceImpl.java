@@ -12,6 +12,7 @@ import br.com.rafael.agendamentobancario.models.Agendamento;
 import br.com.rafael.agendamentobancario.repository.AgendamentoRepository;
 import br.com.rafael.agendamentobancario.transferencia.taxa.CalculaValorTaxa;
 import br.com.rafael.agendamentobancario.transferencia.taxa.TipoCalculo;
+import br.com.rafael.agendamentobancario.utils.DateUtil;
 
 @Service
 public class AgendamentoServiceImpl implements AgendamentoService{
@@ -21,22 +22,23 @@ public class AgendamentoServiceImpl implements AgendamentoService{
 
 	@Override
 	@Transactional
-	public Agendamento save(Agendamento agendamento) {
+	public Agendamento save(Agendamento agendamento) throws Exception {
 		
+		boolean isDataAnteriorAHoje = agendamento.getDataAgendada().isBefore(LocalDate.now());
+		
+		if (isDataAnteriorAHoje)
+		throw new Exception("Nao é permitido agendamento para data passado");
+
 		agendamento.setDataRealizadaAgendamento(LocalDate.now());
-		
-		CalculaValorTaxa tipoDeCalculo = TipoCalculo.getTipoCalculo(agendamento);
-		
-		if (tipoDeCalculo == null)
-		return null;
-		
-		
-		BigDecimal valorTaxaCalculada = tipoDeCalculo.calculaValorTaxa(agendamento);
-		
+
+		CalculaValorTaxa tipoDeCalculo = TipoCalculo.getTipoCalculo(agendamento.getDataRealizadaAgendamento(), agendamento.getDataAgendada(), agendamento.getValorDaTransferencia());
+
+		BigDecimal valorTaxaCalculada = tipoDeCalculo.calculaValorTaxa(agendamento.getDataRealizadaAgendamento(), agendamento.getDataAgendada(), agendamento.getValorDaTransferencia());
+
 		agendamento.setValorTaxa(valorTaxaCalculada);
-		
+
 		return agendamentoRepository.save(agendamento);
-		
+
 	}
 
 }
