@@ -12,7 +12,6 @@ import br.com.rafael.agendamentobancario.models.Agendamento;
 import br.com.rafael.agendamentobancario.repository.AgendamentoRepository;
 import br.com.rafael.agendamentobancario.transferencia.taxa.CalculaValorTaxa;
 import br.com.rafael.agendamentobancario.transferencia.taxa.TipoCalculo;
-import br.com.rafael.agendamentobancario.utils.DateUtil;
 
 @Service
 public class AgendamentoServiceImpl implements AgendamentoService{
