@@ -18,8 +18,10 @@ para facilitar a implementação de novas taxas.
 ## Instalação ##
 
 Para rodar o projeto utilize uma das seguintes opções:
- - Baixe o jar da pasta root e o execulte utilizando o comando: java -jar agendamento-bancario.jar
- - Importe o projeto em sua IDE, utilize o maven para compilar e utilize o DevTools do Spring Suite para inicializar a aplicação.
+ - Baixe o jar da pasta root e com o JDK 13 configurado corretamento nas variaveis de ambiente execulte o jar utilizando 
+ o comando: java -jar agendamento-bancario.jar
+ - Importe o projeto em sua IDE, ajuste para o JDK 13 no Build Path caso necessario e utilize o maven para compilar e
+então utilize o DevTools do Spring Suite para inicializar a aplicação.
 
 
 ## Testando a aplicação ##
