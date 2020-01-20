@@ -13,6 +13,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>agendamento-bancario</name>
 	<description>Agendamento Bancario com Spring Boot</description>
+	<packaging>jar</packaging>
 
 	<properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -59,6 +60,7 @@
 	</dependencies>
 
 	<build>
+	<finalName>agendamento-bancario</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

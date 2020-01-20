@@ -26,7 +26,7 @@ public class AgendamentoServiceImpl implements AgendamentoService{
 		boolean isDataAnteriorAHoje = agendamento.getDataAgendada().isBefore(LocalDate.now());
 		
 		if (isDataAnteriorAHoje)
-		throw new Exception("Nao é permitido agendamento para datas anteriores a hoje.");
+		throw new Exception("Nao é permitido agendamentos para datas anteriores a hoje.");
 
 		agendamento.setDataRealizadaAgendamento(LocalDate.now());
 
